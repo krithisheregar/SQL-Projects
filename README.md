@@ -1,52 +1,53 @@
+
 # 🛒 Zepto E-commerce SQL Data Analyst Portfolio Project
 
-Welcome to **Krithi Sheregar’s Data Analyst Portfolio Project**, inspired by real-world e-commerce inventory analytics!  
+<p align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Zepto_logo.png" alt="Zepto Logo" width="150">
+</p>
+
+Welcome to **Krithi Sheregar’s Data Analyst Portfolio Project**, inspired by real-world **e-commerce inventory analytics**!  
 This project is based on a dataset scraped from **Zepto**, one of India’s fastest-growing quick-commerce startups.  
-It replicates an end-to-end data analyst workflow — from **data exploration** and **cleaning** to **SQL-based business insights**.
+It replicates an end-to-end data analyst workflow — from **data exploration** and **cleaning** to **SQL-driven business insights**.
 
 ---
 
-## 📌 Project Overview
+## 💜 Project Overview
 
-This project simulates how real-world data analysts in **retail and e-commerce** use SQL to generate actionable insights.  
+This project simulates how real-world **data analysts in retail and e-commerce** use SQL to generate actionable insights.  
 
-**Objectives:**
+### **Objectives**
 - ✅ Create and clean an e-commerce inventory database  
 - ✅ Perform **Exploratory Data Analysis (EDA)** to understand product categories, pricing, and availability  
-- ✅ Apply **data cleaning** to handle nulls, invalid entries, and inconsistent units  
+- ✅ Handle **data cleaning** for nulls, invalid entries, and inconsistent units  
 - ✅ Write **business-focused SQL queries** to extract insights on pricing, revenue, and stock levels  
 
 ---
 
 ## 📁 Dataset Overview
 
-The dataset used in this project was sourced from [Kaggle - Zepto Inventory Dataset](https://www.kaggle.com/datasets/palvinder2006/zepto-inventory-dataset/data?select=zepto_v2.csv).
+The dataset comes from [Kaggle - Zepto Inventory Dataset](https://www.kaggle.com/datasets/palvinder2006/zepto-inventory-dataset/data?select=zepto_v2.csv).  
 
-Each record represents a unique SKU (Stock Keeping Unit) for a product.  
-Duplicate names exist since the same product can appear under multiple package sizes, weights, or discount schemes — reflecting real-world catalog structures.
+Each record represents a **unique SKU (Stock Keeping Unit)**. Duplicate names exist since products may appear in multiple package sizes, weights, or discounts — mirroring real-world catalog structures.
 
-### **Columns:**
-| Column Name | Description |
-|--------------|-------------|
-| **sku_id** | Unique identifier for each product entry |
-| **name** | Product name as listed on Zepto |
-| **category** | Product category such as Fruits, Snacks, Beverages, etc. |
-| **mrp** | Maximum Retail Price (in ₹, converted from paise) |
+### **Columns**
+| Column | Description |
+|--------|-------------|
+| **sku_id** | Unique identifier for each product |
+| **name** | Product name listed on Zepto |
+| **category** | Product category (Fruits, Snacks, Beverages, etc.) |
+| **mrp** | Maximum Retail Price (₹) |
 | **discountPercent** | Discount applied on MRP |
-| **discountedSellingPrice** | Final selling price after discount (in ₹) |
+| **discountedSellingPrice** | Final selling price after discount (₹) |
 | **availableQuantity** | Units available in inventory |
-| **weightInGms** | Product weight in grams |
+| **weightInGms** | Product weight (grams) |
 | **outOfStock** | Boolean flag indicating stock availability |
-| **quantity** | Number of units per package (sometimes mixed with grams) |
+| **quantity** | Number of units per package |
 
 ---
 
 ## 🔧 Project Workflow
 
 ### **1️⃣ Database & Table Creation**
-
-We start by defining a SQL table schema that accurately represents the dataset structure:
-
 ```sql
 CREATE TABLE zepto (
   sku_id SERIAL PRIMARY KEY,
@@ -60,113 +61,107 @@ CREATE TABLE zepto (
   outOfStock BOOLEAN,
   quantity INTEGER
 );
-2️⃣ Data Import
-Use pgAdmin’s Import Tool or run the command below:
+````
 
-sql
-Copy code
+### **2️⃣ Data Import**
+
+Use **pgAdmin’s Import Tool** or run:
+
+```sql
 \copy zepto(category, name, mrp, discountPercent, availableQuantity,
             discountedSellingPrice, weightInGms, outOfStock, quantity)
 FROM 'data/zepto_v2.csv'
 WITH (FORMAT csv, HEADER true, DELIMITER ',', QUOTE '"', ENCODING 'UTF8');
-⚙️ Note: If you face encoding issues, re-save your CSV file as CSV UTF-8.
+```
 
-3️⃣ Exploratory Data Analysis (EDA)
-Performed EDA to understand data structure and quality:
+⚙️ *Tip: If encoding issues occur, re-save CSV as UTF-8.*
 
-Counted total records
+---
 
-Displayed dataset samples
+### **3️⃣ Exploratory Data Analysis (EDA)**
 
-Checked for NULL values
+* Counted total records
+* Sampled dataset for preview
+* Checked for NULLs
+* Analyzed unique product categories
+* Compared **in-stock vs out-of-stock**
+* Identified **duplicate SKUs**
 
-Analyzed unique product categories
+---
 
-Compared in-stock vs out-of-stock products
+### **4️⃣ Data Cleaning**
 
-Identified products listed multiple times (duplicate SKUs)
+* Removed records with MRP or discounted price = 0
+* Converted prices from **paise → rupees**
+* Standardized category names
+* Ensured numeric consistency in **weights and quantities**
 
-4️⃣ Data Cleaning
-Removed records where MRP or discounted price = 0
+---
 
-Converted prices from paise to rupees
+### **5️⃣ Business Insights (SQL Queries)**
 
-Standardized inconsistent category names
+* 🏷️ **Top 10 Best-Value Products** (highest discount %)
+* 🚫 **High-MRP Out-of-Stock Products**
+* 💰 **Potential Revenue per Product Category**
+* 🧾 **Expensive Products (MRP > ₹500) with Minimal Discount**
+* 📦 **Top 5 Categories with Highest Average Discounts**
+* ⚖️ **Price per Gram Analysis**
+* 🧺 **Weight-Based Product Segmentation** (Low, Medium, Bulk)
+* ⚖️ **Total Inventory Weight by Category**
 
-Ensured numeric consistency in weights and quantities
+---
 
-5️⃣ Business Insights
-Key analytical SQL queries include:
+## 💻 How to Use This Project
 
-🏷️ Top 10 Best-Value Products (based on discount %)
+1. **Clone the Repository**
 
-🚫 High-MRP Out-of-Stock Products
-
-💰 Potential Revenue per Product Category
-
-🧾 Expensive Products (MRP > ₹500) with Minimal Discount
-
-📦 Top 5 Categories with Highest Average Discounts
-
-⚖️ Price per Gram Analysis — to identify value-for-money items
-
-🧺 Weight-Based Product Segmentation (Low, Medium, Bulk)
-
-⚖️ Total Inventory Weight by Category
-
-💻 How to Use This Project
-Clone the Repository
-
-bash
-Copy code
+```bash
 git clone https://github.com/<your-github-username>/zepto-sql-data-analysis.git
 cd zepto-sql-data-analysis
-Open the SQL File
+```
 
-bash
-Copy code
+2. **Open the SQL File**
+
+```bash
 zepto_SQL_data_analysis.sql
-This file contains:
+```
 
-Table creation scripts
+Contains:
 
-EDA and data cleaning SQL
+* Table creation scripts
+* EDA & data cleaning SQL
+* Business analysis queries
 
-Business analysis queries
+3. **Load the Dataset**
 
-Load the Dataset
+* Open **pgAdmin** or any PostgreSQL client
+* Create a new database (e.g., `zepto_db`)
+* Run the SQL file
+* Import dataset (ensure **UTF-8 encoding**)
 
-Open pgAdmin or any PostgreSQL client
+---
 
-Create a new database (e.g., zepto_db)
+## 🧠 Learnings & Takeaways
 
-Run the SQL file
-
-Import the dataset (ensure UTF-8 encoding)
-
-🧠 Learnings & Takeaways
 Through this project, I practiced:
 
-Writing efficient SQL queries
+* Writing **efficient SQL queries**
+* Handling **real-world messy data**
+* Performing **data-driven business analysis**
+* Deriving **KPIs for inventory optimization**
+* Presenting **insights for a data analytics portfolio**
 
-Handling real-world messy data
+---
 
-Performing data-driven business analysis
+## 👩‍💻 About the Author
 
-Deriving insightful KPIs for inventory optimization
+Hi, I’m **Krithi Sheregar** — a passionate Data Analyst skilled in SQL, Power BI, and automation tools like Power Automate & Python.
+I enjoy solving **business problems through data** and building **dashboards that tell impactful stories**.
 
-Presenting findings as part of a data analytics portfolio
+🌐 [LinkedIn](https://www.linkedin.com/in/krithi-sheregar) | 📧 [krithi.sheregar@gmail.com](mailto:krithi.sheregar@gmail.com)
 
-👩‍💻 About the Author
-Hi, I’m Krithi Sheregar — a passionate Data Analyst skilled in SQL, Power BI, and automation tools like Power Automate and Python scripting.
-I enjoy solving business problems through data and building dashboards that tell impactful stories.
+---
 
-Let’s connect and grow together!
+## 💬 Acknowledgements
 
-🌐 LinkedIn: Krithi Sheregar
-
-📧 Email: krithi.sheregar@gmail.com
-
-
-💬 Acknowledgement
-Dataset Source: Kaggle - Zepto Inventory Dataset
+Dataset Source: [Kaggle - Zepto Inventory Dataset](https://www.kaggle.com/datasets/palvinder2006/zepto-inventory-dataset/data?select=zepto_v2.csv)
