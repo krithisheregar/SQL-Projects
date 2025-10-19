@@ -2,7 +2,7 @@
 # 🛒 Zepto E-commerce SQL Data Analyst Portfolio Project
 
 <p align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/0/0f/Zepto_logo.png" alt="Zepto Logo" width="150">
+  <img src="https://www.techiexpert.com/wp-content/uploads/2024/03/cropped-zepto-1.png" alt="Zepto Logo" width="150">
 </p>
 
 Welcome to **Krithi Sheregar’s Data Analyst Portfolio Project**, inspired by real-world **e-commerce inventory analytics**!  
