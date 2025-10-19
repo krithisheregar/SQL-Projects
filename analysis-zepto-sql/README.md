@@ -1,6 +1,6 @@
-# 🛒 Zepto E-commerce SQL Data Analyst Portfolio Project
+# 🛒 Zepto E-commerce SQL Data Analysis
 
-Welcome to **Krithi Sheregar’s Data Analyst Portfolio Project**, inspired by real-world e-commerce inventory analytics!  
+Welcome to **Krithi Sheregar’s Data Analysis Project**, inspired by real-world e-commerce inventory analytics!  
 This project is based on a dataset scraped from **Zepto**, one of India’s fastest-growing quick-commerce startups.  
 It replicates an end-to-end data analyst workflow — from **data exploration** and **cleaning** to **SQL-based business insights**.
 
